@@ -31,4 +31,6 @@ while True:
     counter += 1
     if banks in history:
         break
-print(counter)
+print('Counter:', counter)
+
+print('Loop cycle:', counter - history.index(banks))
