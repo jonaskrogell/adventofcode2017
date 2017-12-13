@@ -1,8 +1,7 @@
 import sys
 
+highest_value = 0
 registry = {}
-
-stack = []
 for instruction in sys.stdin.read().strip().split('\n'):
     instruction = instruction.split(' ')
     reg = instruction[0]
@@ -40,8 +39,11 @@ for instruction in sys.stdin.read().strip().split('\n'):
     if execute:
         print('Updating reg...')
         registry[reg] += diff
+        if registry[reg] > highest_value:
+            highest_value = registry[reg]
 
     print('After:', registry)
 
 print('Registry:', registry)
-print('Largest value in registry:', max(registry.values()))
+print('Largest value in registry currently:', max(registry.values()))
+print('Largest value ever seen in registry :', highest_value)
