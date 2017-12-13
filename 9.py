@@ -14,8 +14,6 @@ def process(stream, level):
             pos += steps
         elif stream[pos] == '}':
             return groups, pos + 1, score
-#        elif stream[pos] == '!':
-#            pos += 1
         elif stream[pos] == '<':
             garbage = True
             while garbage:
