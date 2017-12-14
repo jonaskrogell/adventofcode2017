@@ -4,6 +4,7 @@ import sys
 for row in sys.stdin.read().strip().split('\n'):
     pos = {'x': 0, 'y': 0, 'z': 0}
 #    print(row)
+    m_tot = 0
     for op in row.split(','):
         if op == 'n':
             pos['x'] -= 1
@@ -24,8 +25,13 @@ for row in sys.stdin.read().strip().split('\n'):
             pos['x'] += 1
             pos['z'] -= 1
 
+        for key in pos:
+            if abs(pos[key]) > m_tot:
+                m_tot = abs(pos[key])
+
+
     m = 0
     for key in pos:
         if abs(pos[key]) > m:
             m = abs(pos[key])
-    print('Length:', m)
+    print('Length:', m, m_tot)
