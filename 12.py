@@ -17,6 +17,7 @@ for row in sys.stdin.read().strip().split('\n'):
         if pipe_start not in pipes[pipe_dest]:
             pipes[pipe_dest].append(pipe_start)
 
+
 def tracePipes(start):
     visited.add(start)
     sum = 1
@@ -25,6 +26,11 @@ def tracePipes(start):
             sum += tracePipes(pipe)
     return sum
 
-sum = tracePipes(0)
-print(pipes)
-print(sum)
+
+groups = 0
+for start_place in pipes:
+    if start_place not in visited:
+        sum = tracePipes(start_place)
+        print('Group start:', start_place, 'Sum:', sum)
+        groups += 1
+print('Total groups:', groups)
