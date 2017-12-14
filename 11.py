@@ -29,7 +29,6 @@ for row in sys.stdin.read().strip().split('\n'):
             if abs(pos[key]) > m_tot:
                 m_tot = abs(pos[key])
 
-
     m = 0
     for key in pos:
         if abs(pos[key]) > m:
