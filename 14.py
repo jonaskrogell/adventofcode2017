@@ -45,11 +45,38 @@ def knotHash(input):
 
 
 my_input = 'vbqugkhl'
+#my_input = 'flqrgnkx'
+
+matrix = []
 
 total_bits = 0
 for x in range(128):
     input = my_input + '-' + str(x)
     knothashoutput, bits = knotHash(input)
     total_bits += bits.count('1')
+    row = []
+    for bit in bits:
+        row.append(bit)
+    matrix.append(row)
     print(input, knothashoutput)
 print('Total bits:', total_bits)
+
+
+def destroyTheMatrix(matrix, x, y):
+    if x > 127 or y > 127 or x < 0 or y < 0:
+        return 0
+    if matrix[x][y] == '0':
+        return 0
+    matrix[x][y] = '0'
+    destroyTheMatrix(matrix, x + 1, y)
+    destroyTheMatrix(matrix, x - 1, y)
+    destroyTheMatrix(matrix, x, y + 1)
+    destroyTheMatrix(matrix, x, y - 1)
+    return 1
+
+
+groups = 0
+for y in range(128):
+    for x in range(128):
+        groups += destroyTheMatrix(matrix, x, y)
+print('Total groups:', groups)
