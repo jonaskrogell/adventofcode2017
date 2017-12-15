@@ -21,7 +21,17 @@ for row in sys.stdin.read().strip().split('\n'):
     firewall[pos]['state'] = 0
     firewall[pos]['direction'] = 1
 
+severity = 0
+pos = -1
 for x in range(max(firewall) + 1):
     print(x, firewall)
+    pos += 1
+    if pos in firewall and firewall[pos]['state'] == 0:
+        print(pos, 'caught at length', firewall[pos]['length'])
+        severity += pos * firewall[pos]['length']
+    else:
+        pass
     tickFirewall()
     print(x, firewall)
+
+print('Severity:', severity)
