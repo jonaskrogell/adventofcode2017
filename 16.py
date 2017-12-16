@@ -1,4 +1,5 @@
 import sys
+import math
 
 programs = []
 for x in range(16):
@@ -15,18 +16,12 @@ moves = []
 for move in sys.stdin.read().strip().split(','):
     moves.append(move)
 
-states = {}
+start = ''.join(programs)
 
-counter = 1
+counter = 0
 loop = 1000000000
 while counter < loop:
-    state = ''.join(programs)
-    if counter < (loop - 1000) and state in states:
-        counter += states[state]
-        continue
-    elif counter > 100 and state not in states:
-        states[state] = counter
-
+    counter += 1
     for move in moves:
         if move[0] == 's':
             size = -1 * int(move[1:])
@@ -37,7 +32,15 @@ while counter < loop:
         elif move[0] == 'p':
             x1, x2 = move[1:].split('/')
             swap(programs, programs.index(x1), programs.index(x2))
-    counter += 1
 
-print('State table:', len(states))
+    state = ''.join(programs)
+#    print(counter, state)
+    if counter == 1:
+        print('After first dance state:', state)
+    if state == start:
+        # cycle found
+        print('Cycle found at', counter)
+        counter += math.floor((loop - counter) / counter) * counter
+
+
 print(counter, ''.join(programs))
