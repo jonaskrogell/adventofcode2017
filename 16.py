@@ -17,6 +17,7 @@ for move in sys.stdin.read().strip().split(','):
     moves.append(move)
 
 start = ''.join(programs)
+states = {}
 
 counter = 0
 loop = 1000000000
@@ -34,13 +35,12 @@ while counter < loop:
             swap(programs, programs.index(x1), programs.index(x2))
 
     state = ''.join(programs)
-#    print(counter, state)
+    states[counter] = state
     if counter == 1:
         print('After first dance state:', state)
     if state == start:
         # cycle found
         print('Cycle found at', counter)
         counter += math.floor((loop - counter) / counter) * counter
-
-
-print(counter, ''.join(programs))
+        print(loop, 'State is', states[(loop - counter)])
+        break
