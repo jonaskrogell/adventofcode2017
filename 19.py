@@ -44,6 +44,7 @@ def getNextPos():
     return next_x, next_y, valid
 
 
+steps = 1
 letters = ''
 while True:
     print('Pos (x, y, direction):', x, y, direction)
@@ -67,13 +68,12 @@ while True:
         if stuck == 0:
             print('Stuck!')
             print('Found letters:', letters)
+            print('Walked steps:', steps)
             sys.exit(0)
         continue
 
     if network[next_y][next_x] != ' ':
         x = next_x
         y = next_y
+        steps += 1
         continue
-
-
-print('Letters:', letters)
