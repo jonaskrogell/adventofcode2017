@@ -28,35 +28,35 @@ def applyRules(data, rotations = 3):
     for row in data:
         key_items.append(''.join(row))
     key = '/'.join(key_items)
-    print(key)
+#    print(key)
     if key in rules:
-        print('Found in rules', rules[key])
+#        print('Found in rules', rules[key])
         return rules[key]
     elif rotations >= 0:
-        print('Rotate', data)
+#        print('Rotate', data)
         new_data = []
         for x in zip(*data[::-1]):
             new_data.append(list(x))
-        print('Rotated data', new_data)
+#        print('Rotated data', new_data)
         return applyRules(new_data, rotations - 1)
     else:
-        print('Flip', data)
+#        print('Flip', data)
         for row in data:
             row.reverse()
-        print('Flipped data', data)
+#        print('Flipped data', data)
         return applyRules(data)
 
 
 matrix = ['.#.', '..#', '###']
 # matrix = [['.', '#', '.'], ['.', '.', '#'], ['#', '#', '#']]
 
-for x in range(5):
-    print(matrix)
+for x in range(18):
+#    print(matrix)
     if (len(matrix) % 2) == 0:
-        print('Devide into 2x2')
+#        print('Devide into 2x2')
         cut_size = 2
     elif (len(matrix) % 3) == 0:
-        print('Devide into 3x3')
+#        print('Devide into 3x3')
         cut_size = 3
     else:
         raise Exception('Unknown size on matrix', len(matrix))
@@ -71,7 +71,7 @@ for x in range(5):
                 data.append(matrix[part_y * cut_size + cut_step][part_x * cut_size:part_x * cut_size + cut_size])
             new_blocks.append(applyRules(data))
 
-    print('New blocks', len(new_blocks), new_blocks)
+#    print('New blocks', len(new_blocks), new_blocks)
 
     block_size = len(new_blocks[0])
     new_size = int(math.sqrt(len(new_blocks))) * block_size
@@ -92,7 +92,10 @@ for x in range(5):
 
     matrix = new_matrix
 
-    printMatrix(matrix)
+#    printMatrix(matrix)
+
+
+printMatrix(matrix)
 
 count = 0
 for row in matrix:
