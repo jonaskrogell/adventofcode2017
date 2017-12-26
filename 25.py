@@ -53,6 +53,7 @@ def renderTape(tape, pos):
         else:
             print(x, '0 -')
 
+
 print('Do diagnostics after steps:', diag_counter)
 print('Begin state:', begin_state)
 print(program)
