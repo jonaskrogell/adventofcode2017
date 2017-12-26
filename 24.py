@@ -38,12 +38,20 @@ for row in sys.stdin.read().split('\n'):
 
 # print(components)
 
-max_score = 0
 paths = buildBridges(0, components)
+max_score = 0
+max_length = 0
+max_length_score = 0
 for path in paths:
     score = scorePath(path)
     if score > max_score:
         max_score = score
+    if len(path) >= max_length:
+        max_length = len(path)
+        if score > max_length_score:
+            max_length_score = score
 #    print(path, score)
 print('Paths found:', len(paths))
 print('Max score:', max_score)
+print('Max length:', max_length)
+print('Max length score:', max_length_score)
